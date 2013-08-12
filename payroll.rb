@@ -1,5 +1,7 @@
 class Payroll
 
+	attr_reader :address
+
 	def self.base_pay(hourly_rate, hours)
 		hourly_rate * hours
 	end
@@ -13,4 +15,20 @@ class Payroll
 		gross_pay * tax_rate
 	end
 
+	def check_pay(address)
+		@address = address
+	end
+
+	def eft_pay(bank_account)
+		@bank_account = bank_account
+	end
+
+	def deliver
+		if @address
+			return "delivered via mail"
+		else
+			return "cannot deliver"
+		end
+	end
+		
 end
