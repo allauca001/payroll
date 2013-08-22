@@ -36,38 +36,24 @@ describe Payroll do
 
     "delivered by bank account".should be == payroll.deliver
   end
-end
 
-describe Employee do
+  it "should calculate overtime hours" do
+    hours = Payroll.over_hours num=65    
+    25.should be == hours
 
-  it "should assign a unique id" do
-    first_employee = Employee.new
-    1.should be_equal first_employee.id
-    
-    second_employee = Employee.new
-    2.should be_equal second_employee.id
-
-    third_employee = Employee.new
-    3.should be_equal third_employee.id
+    hours = Payroll.over_hours num=35
+    0.should be == hours
   end
 
-  it "should maintain: name, id, ssn, address, hourly rate" do
-    first_employee = Employee.new do |e, c, d|
-      e.name = "Olga Allauca"
-      e.ssn = "111-1111-11"
-      e.home_address = "234 Antiquera Ave"
-      e.hourly_rate = 71 + c + d
-    end
-
-    
-
-    "Olga Allauca".should be == first_employee.name
-    "111-1111-11".should be == first_employee.ssn
-    "234 Antiquera Ave".should be  == first_employee.home_address
-    80.should be == first_employee.hourly_rate
-  end
+   it "should calculate overtime 1" do
+     overtime = Payroll.overtime hourly_rate=80, hours=65
+     3000.should be == overtime
+   end
 
 end
+
+
+
 
 
 	

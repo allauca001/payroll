@@ -30,23 +30,20 @@ class Payroll
 			return "delivered by bank account"
 		end
 	end
-end
 
-class Employee 
-	attr_reader   :id
-	attr_accessor :name, :home_address, :hourly_rate, :ssn 
+	def self.over_hours(num)
+  	return num - 40 if num > 40
+  	return 0
+  end
 
- 	class << self
- 		attr_accessor :counter
- 	end
- 	@counter = 1
+  def self.overtime(hourly_rate, hours)
+  	overtime = self.over_hours num=hours
+  	return overtime * hourly_rate * 1.5
+  end
 
-	def initialize
-		@id = Employee.counter
-		Employee.counter += 1
-		if block_given?
-			yield self, 4, 5
-		end
-	end
 
-end
+
+ end
+	 
+
+
