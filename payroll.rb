@@ -41,6 +41,13 @@ class Payroll
   	return overtime * hourly_rate * 1.5
   end
 
+  def self.overtime_perhour(hourly_rate, overtime_rate)
+  	pay_perhour = hourly_rate * overtime_rate
+  	return hourly_rate if pay_perhour > 87.25
+  	return pay_perhour
+  end
+
+ 
 
 
  end

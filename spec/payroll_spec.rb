@@ -50,6 +50,15 @@ describe Payroll do
      3000.should be == overtime
    end
 
+   it "should capp overtime" do
+    capped = Payroll.overtime_perhour hourly_rate=80, overtime_rate=1.5
+    80.should be == capped
+
+    capped = Payroll.overtime_perhour hourly_rate=55, overtime_rate=1.5
+    (82.50).should be == capped
+
+   end
+
 end
 
 
